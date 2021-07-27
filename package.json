@@ -52,6 +52,7 @@
     "webpack": "^5.39.1"
   },
   "dependencies": {
+    "shelljs": "^0.8.4",
     "simple-git": "^2.40.0"
   }
 }
