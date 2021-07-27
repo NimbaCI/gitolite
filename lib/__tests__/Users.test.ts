@@ -10,8 +10,13 @@ jest.mock("shelljs", () => ({
 }));
 
 describe("GitoliteAdmin.Users", () => {
-  const PATH = "/path/to/gitolite/admin/repo";
-  const gitoliteAdmin = GitoliteAdmin.init(PATH);
+  const adminRepoPath = "/path/to/admin/repo";
+  const permissionsConfigFilePath = "/path/to/config/file";
+
+  const gitoliteAdmin = GitoliteAdmin.init({
+    adminRepoPath,
+    permissionsConfigFilePath
+  });
 
   describe("add function", () => {
     test("adds a new user", () => {

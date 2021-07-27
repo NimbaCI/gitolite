@@ -1,3 +1,4 @@
+import Repos from "./Repos";
 import Users from "./Users";
 
 type UsersObject = {
@@ -5,19 +6,32 @@ type UsersObject = {
   remove: (username: string) => void;
 };
 
+type ReposObject = {
+  add: (repoName: string, username: string) => void;
+  remove: (repoName: string, username: string) => void;
+};
+
+type InitParams = {
+  adminRepoPath: string;
+  permissionsConfigFilePath: string;
+};
+
 class GitoliteAdmin {
   private static instance: GitoliteAdmin;
-  gitoliteAdminRepoPath: string;
   users: UsersObject;
+  repos: ReposObject;
 
-  private constructor(path: string) {
-    this.gitoliteAdminRepoPath = path;
-    this.users = Users(path);
+  private constructor(adminRepoPath: string, configFilePath: string) {
+    this.users = Users(adminRepoPath);
+    this.repos = Repos(configFilePath);
   }
 
-  public static init(path: string) {
+  public static init({ adminRepoPath, permissionsConfigFilePath }: InitParams) {
     if (!GitoliteAdmin.instance) {
-      GitoliteAdmin.instance = new GitoliteAdmin(path);
+      GitoliteAdmin.instance = new GitoliteAdmin(
+        adminRepoPath,
+        permissionsConfigFilePath
+      );
     }
 
     return GitoliteAdmin.instance;

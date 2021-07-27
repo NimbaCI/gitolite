@@ -20,6 +20,7 @@
     "@types/express": "^4.17.12",
     "@types/jest": "^26.0.24",
     "@types/jsonwebtoken": "^8.5.4",
+    "@types/line-reader": "^0.0.34",
     "@types/node": "^15.12.4",
     "@types/sha.js": "^2.4.0",
     "@types/shelljs": "^0.8.8",
@@ -52,6 +53,7 @@
     "webpack": "^5.39.1"
   },
   "dependencies": {
+    "line-reader": "^0.4.0",
     "shelljs": "^0.8.4",
     "simple-git": "^2.40.0"
   }
