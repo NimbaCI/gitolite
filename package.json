@@ -2,11 +2,15 @@
   "name": "gitolite",
   "version": "1.0.0",
   "description": "Gitolite management package",
-  "main": "src/index.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "build:prod": "rimraf ./build && tsc",
-    "test": "jest"
+    "build": "tsc",
+    "test": "jest",
+    "prepare" : "npm run build",
+    "prepublishOnly" : "npm test"
   },
+  "files": ["lib/**/*"],
   "author": "Florian Adonis<tanohzana@gmail.com>",
   "license": "MIT",
   "devDependencies": {
