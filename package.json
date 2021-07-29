@@ -1,5 +1,5 @@
 {
-  "name": "gitolite",
+  "name": "gitolite-js",
   "version": "1.0.0",
   "description": "Gitolite management package",
   "main": "lib/index.js",
