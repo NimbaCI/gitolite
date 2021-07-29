@@ -1,5 +1,6 @@
 import Repos from "./Repos";
 import Users from "./Users";
+import { checkIfFilesExists } from "./utils/checkIfFilesExists";
 
 type UsersObject = {
   add: (username: string, sshKey: string) => void;
@@ -27,6 +28,8 @@ class GitoliteAdmin {
   }
 
   public static init({ adminRepoPath, permissionsConfigFilePath }: InitParams) {
+    checkIfFilesExists([adminRepoPath, permissionsConfigFilePath]);
+
     if (!GitoliteAdmin.instance) {
       GitoliteAdmin.instance = new GitoliteAdmin(
         adminRepoPath,

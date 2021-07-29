@@ -1,5 +1,7 @@
 import GitoliteAdmin from "../GitoliteAdmin";
 
+jest.mock("../utils/checkIfFilesExists");
+
 describe("GitoliteAdmin", () => {
   test("is initialized", () => {
     const adminRepoPath = "/path/to/admin/repo";

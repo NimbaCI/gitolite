@@ -1,6 +1,8 @@
 import GitoliteAdmin from "../GitoliteAdmin";
 import fs from "fs";
 
+jest.mock("../utils/checkIfFilesExists");
+
 jest.mock("shelljs", () => ({
   __esModule: true,
   default: {
