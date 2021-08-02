@@ -40,8 +40,14 @@ const removeRepoFromLineAt = (
   });
 };
 
-const Repos = (configFilePath: string, isLocal: boolean) => {
+const Repos = (
+  configFilePath: string,
+  pathToGitoliteAdmin: string,
+  isLocal: boolean
+) => {
   const add = (repoName: string, username: string) => {
+    shell.cd(pathToGitoliteAdmin);
+
     fs.appendFileSync(configFilePath, "\n\n");
     fs.appendFileSync(configFilePath, `repo ${username}/${repoName}\n`);
     fs.appendFileSync(configFilePath, `    RW+     =   ${username}`);
@@ -58,6 +64,8 @@ const Repos = (configFilePath: string, isLocal: boolean) => {
   };
 
   const remove = (repoName: string, username: string) => {
+    shell.cd(pathToGitoliteAdmin);
+
     const fileContent = fs.readFileSync(configFilePath, {
       encoding: "utf8"
     });

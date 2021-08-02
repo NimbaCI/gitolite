@@ -6,6 +6,7 @@ jest.mock("../utils/checkIfFilesExists");
 jest.mock("shelljs", () => ({
   __esModule: true,
   default: {
+    cd: jest.fn(),
     exec: jest.fn()
   }
 }));

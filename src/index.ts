@@ -29,7 +29,7 @@ class GitoliteAdmin {
     isLocal: boolean
   ) {
     this.users = Users(adminRepoPath, isLocal);
-    this.repos = Repos(configFilePath, isLocal);
+    this.repos = Repos(configFilePath, adminRepoPath, isLocal);
   }
 
   public static init({
