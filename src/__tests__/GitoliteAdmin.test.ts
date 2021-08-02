@@ -1,4 +1,4 @@
-import GitoliteAdmin from "../GitoliteAdmin";
+import GitoliteAdmin from "../index";
 
 jest.mock("../utils/checkIfFilesExists");
 

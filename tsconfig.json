@@ -5,6 +5,7 @@
     "lib": ["es6"],
     "allowJs": true,
     "outDir": "lib",
+    "declaration": true,
     "rootDir": "src",
     "strict": true,
     "noImplicitAny": true,
