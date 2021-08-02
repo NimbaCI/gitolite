@@ -40,7 +40,7 @@ const removeRepoFromLineAt = (
   });
 };
 
-const Repos = (configFilePath: string) => {
+const Repos = (configFilePath: string, isLocal: boolean) => {
   const add = (repoName: string, username: string) => {
     fs.appendFileSync(configFilePath, "\n\n");
     fs.appendFileSync(configFilePath, `repo ${username}/${repoName}\n`);
@@ -49,7 +49,12 @@ const Repos = (configFilePath: string) => {
     // Save changes
     shell.exec("git add -A");
     shell.exec(`git commit -am "add repo ${username}/${repoName}"`);
-    shell.exec("git push");
+
+    if (isLocal) {
+      shell.exec("$HOME/bin/gitolite push");
+    } else {
+      shell.exec("git push");
+    }
   };
 
   const remove = (repoName: string, username: string) => {
@@ -65,6 +70,16 @@ const Repos = (configFilePath: string) => {
     const filteredLines = removeRepoFromLineAt(linesArray, startingIndex);
 
     fs.writeFileSync(configFilePath, filteredLines.join("\n"));
+
+    // Save changes
+    shell.exec("git add -A");
+    shell.exec(`git commit -am "add repo ${username}/${repoName}"`);
+
+    if (isLocal) {
+      shell.exec("$HOME/bin/gitolite push");
+    } else {
+      shell.exec("git push");
+    }
   };
 
   return {
