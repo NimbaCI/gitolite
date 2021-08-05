@@ -45,12 +45,17 @@ const Repos = (
   pathToGitoliteAdmin: string,
   isLocal: boolean
 ) => {
-  const add = (repoName: string, username: string) => {
+  const add = (repoName: string, username: string, admin?: string) => {
     shell.cd(pathToGitoliteAdmin);
 
     fs.appendFileSync(configFilePath, "\n\n");
     fs.appendFileSync(configFilePath, `repo ${username}/${repoName}\n`);
     fs.appendFileSync(configFilePath, `    RW+     =   ${username}`);
+
+    if (admin) {
+      fs.appendFileSync(configFilePath, "\n");
+      fs.appendFileSync(configFilePath, `    R       =   ${admin}`);
+    }
 
     // Save changes
     shell.exec("git add -A");

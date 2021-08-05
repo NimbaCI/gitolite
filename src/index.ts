@@ -8,7 +8,7 @@ type UsersObject = {
 };
 
 type ReposObject = {
-  add: (repoName: string, username: string) => void;
+  add: (repoName: string, username: string, admin?: string) => void;
   remove: (repoName: string, username: string) => void;
 };
 

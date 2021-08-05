@@ -48,6 +48,25 @@ repo username/repoName
 
       expect(fileContent).toBe(EXPECTED_FILE_CONTENT);
     });
+
+    test("adds the repo info to config file with admin", () => {
+      const repoName = "repoName";
+      const username = "username";
+      const admin = "admin";
+      const EXPECTED_FILE_CONTENT_WITH_ADMIN = `repo test
+    RW+     =   testUser
+
+repo username/repoName
+    RW+     =   username
+    R       =   admin`;
+
+      gitoliteAdmin.repos.add(repoName, username, admin);
+      const fileContent = fs.readFileSync(permissionsConfigFilePath, {
+        encoding: "utf8"
+      });
+
+      expect(fileContent).toBe(EXPECTED_FILE_CONTENT_WITH_ADMIN);
+    });
   });
 
   describe("remove function", () => {
