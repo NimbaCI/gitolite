@@ -72,7 +72,7 @@ const Repos = (
   const remove = (repoName: string, username: string) => {
     shell.cd(pathToGitoliteAdmin);
 
-    const repoPath = `${reposPath}/${username}/${repoName}`;
+    const repoPath = `${reposPath}/${username}/${repoName}.git`;
 
     const fileContent = fs.readFileSync(configFilePath, {
       encoding: "utf8"
