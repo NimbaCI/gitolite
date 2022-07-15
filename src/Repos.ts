@@ -72,6 +72,8 @@ const Repos = (
   const remove = (repoName: string, username: string) => {
     shell.cd(pathToGitoliteAdmin);
 
+    const repoPath = `${reposPath}/${username}/${repoName}`;
+
     const fileContent = fs.readFileSync(configFilePath, {
       encoding: "utf8"
     });
@@ -95,10 +97,15 @@ const Repos = (
       shell.exec("git push");
     }
 
-    fs.rmSync(`${reposPath}/${username}/${repoName}`, {
-      force: true,
-      recursive: true
-    });
+    console.log(`Trying to delete: ${repoPath}`);
+
+    shell.rm("-rf", `${repoPath}`);
+
+    const fileStillExists = fs.existsSync(`${repoPath}`);
+
+    if (fileStillExists) {
+      console.log(`Repo ${repoPath} was not deleted`);
+    }
   };
 
   return {

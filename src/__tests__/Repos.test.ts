@@ -7,17 +7,20 @@ jest.mock("shelljs", () => ({
   __esModule: true,
   default: {
     cd: jest.fn(),
-    exec: jest.fn()
+    exec: jest.fn(),
+    rm: jest.fn()
   }
 }));
 
 describe("GitoliteAdmin.Repos", () => {
   const adminRepoPath = "/path/to/admin/repo";
+  const reposPath = "/path/to/repos";
   const permissionsConfigFilePath = "./adminconf.conf";
 
   const gitoliteAdmin = GitoliteAdmin.init({
     adminRepoPath,
-    permissionsConfigFilePath
+    permissionsConfigFilePath,
+    reposPath
   });
 
   beforeEach(() => {
