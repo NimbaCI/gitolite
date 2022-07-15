@@ -86,7 +86,7 @@ const Repos = (
 
     // Save changes
     shell.exec("git add -A");
-    shell.exec(`git commit -am "add repo ${username}/${repoName}"`);
+    shell.exec(`git commit -am "remove repo ${username}/${repoName}"`);
 
     if (isLocal) {
       shell.exec("$HOME/bin/gitolite push");
