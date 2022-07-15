@@ -43,6 +43,7 @@ const removeRepoFromLineAt = (
 const Repos = (
   configFilePath: string,
   pathToGitoliteAdmin: string,
+  reposPath: string,
   isLocal: boolean
 ) => {
   const add = (repoName: string, username: string, admin?: string) => {
@@ -93,6 +94,11 @@ const Repos = (
     } else {
       shell.exec("git push");
     }
+
+    fs.rmSync(`${reposPath}/${username}/${repoName}`, {
+      force: true,
+      recursive: true
+    });
   };
 
   return {

@@ -16,6 +16,7 @@ type InitParams = {
   adminRepoPath: string;
   isLocal?: boolean;
   permissionsConfigFilePath: string;
+  reposPath: string;
 };
 
 class GitoliteAdmin {
@@ -25,23 +26,26 @@ class GitoliteAdmin {
 
   private constructor(
     adminRepoPath: string,
+    reposPath: string,
     configFilePath: string,
     isLocal: boolean
   ) {
     this.users = Users(adminRepoPath, isLocal);
-    this.repos = Repos(configFilePath, adminRepoPath, isLocal);
+    this.repos = Repos(configFilePath, adminRepoPath, reposPath, isLocal);
   }
 
   public static init({
     adminRepoPath,
     isLocal = false,
-    permissionsConfigFilePath
+    permissionsConfigFilePath,
+    reposPath
   }: InitParams) {
     checkIfFilesExists([adminRepoPath, permissionsConfigFilePath]);
 
     if (!GitoliteAdmin.instance) {
       GitoliteAdmin.instance = new GitoliteAdmin(
         adminRepoPath,
+        reposPath,
         permissionsConfigFilePath,
         isLocal
       );
